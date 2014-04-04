@@ -24,15 +24,20 @@ public class WeaponScript : MonoBehaviour {
 	public void Attack(bool isEnemy)
 	{
 		if (CanAttack) {
+
+			var player = GetComponent<PlayerScript>();
+			var offset = player.forward ? 0.4f : -0.4f;
 						cooldown = FireRate;
 			
 						// Create a new shot
 			var shotTransform = Instantiate (Ammo) as Transform;
-			var pos = new Vector2(transform.position.x+0.4f, transform.position.y);
+			var pos = new Vector2(transform.position.x+offset, transform.position.y);
 						// Assign position
 						shotTransform.position = pos;
-			
-			
+			var move = shotTransform.GetComponent<MoveScript>();
+			if(!player.forward) {
+				move.direction = new Vector2(-1,0);
+			}	
 				
 				}
 	}
