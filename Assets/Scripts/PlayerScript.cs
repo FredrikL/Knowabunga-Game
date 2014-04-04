@@ -26,6 +26,12 @@ public class PlayerScript : MonoBehaviour {
 						rigidbody2D.AddForce (new Vector2 (0, JumpForce));
 				} 
 
+		if (x > 0) {
+
+			transform.localScale = new Vector2(1f,1f);
+				} else if(x < 0) {
+			transform.localScale = new Vector2(-1f,1f);
+				}
 		var movment = new Vector2(speed.x * x, 0);
 		movment *= Time.deltaTime;
 		transform.Translate (movment);
@@ -41,7 +47,7 @@ public class PlayerScript : MonoBehaviour {
 				weapon.Attack(false);
 			}
 		}
-	}
+			}
 
 	bool CanJump() {
 		return transform.rigidbody2D.velocity.y == 0;
