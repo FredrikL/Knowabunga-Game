@@ -26,9 +26,7 @@ public class PlayerScript : MonoBehaviour
 						anim.SetBool ("moving", false);
 				}
 
-				if (Input.GetKey (KeyCode.UpArrow) && CanJump ()) {
-						rigidbody2D.AddForce (new Vector2 (0, JumpForce));
-				} 
+				
 
 				if (x >= 0) {
 						forward = true;
@@ -52,7 +50,14 @@ public class PlayerScript : MonoBehaviour
 				}
 		}
 
-		bool CanJump ()
+
+	void FixedUpdate() {
+		if (Input.GetKey (KeyCode.UpArrow) && CanJump ()) {
+			rigidbody2D.AddForce (new Vector2 (0, JumpForce));
+		} 
+	}
+	
+	bool CanJump ()
 		{
 				return transform.rigidbody2D.velocity.y == 0;
 		}
